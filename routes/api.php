@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')
+    ->get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+$testObj = new stdClass();
+$testObj->testKey = 123;
+//dd(['message' => 'pong', 'a' => 444444444444], '123', 123);
+
+Route::get('/ping', fn() => response()->json(['message' => 'pong', 'a' => 1, 'objMyTest' => $testObj]));
